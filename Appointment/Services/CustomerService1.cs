@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace Appointement_Services.Services
 {
-    public class CustomerService : ICustomerService
+    public class CustomerService1 : ICustomerService
     {
         private readonly AppDbContext _appDbContext;
 
-        public CustomerService(AppDbContext appDbContext)
+        public CustomerService1(AppDbContext appDbContext)
         {
             _appDbContext = appDbContext;
         }
