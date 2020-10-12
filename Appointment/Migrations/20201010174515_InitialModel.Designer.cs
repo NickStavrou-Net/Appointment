@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Appointment_UI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200921181010_InitialUserRemove")]
-    partial class InitialUserRemove
+    [Migration("20201010174515_InitialModel")]
+    partial class InitialModel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,9 +27,6 @@ namespace Appointment_UI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("AppointmentsDate")
-                        .HasColumnType("datetime2");
 
                     b.Property<int>("AppointmentsDurationInMinits")
                         .HasColumnType("int");
@@ -123,6 +120,25 @@ namespace Appointment_UI.Migrations
                     b.ToTable("Services");
                 });
 
+            modelBuilder.Entity("Appointment_UI.Models.Dates", b =>
+                {
+                    b.Property<int>("DateId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateofAppointment")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("TimeFinish")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("TimeStart")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("DateId");
+
+                    b.ToTable("Dates");
+                });
+
             modelBuilder.Entity("Appointment.Models.Appointments", b =>
                 {
                     b.HasOne("Appointment.Models.Customer", "Customer")
@@ -139,6 +155,15 @@ namespace Appointment_UI.Migrations
                     b.HasOne("Appointment.Models.Appointments", null)
                         .WithMany("Services")
                         .HasForeignKey("AppointmentsId");
+                });
+
+            modelBuilder.Entity("Appointment_UI.Models.Dates", b =>
+                {
+                    b.HasOne("Appointment.Models.Appointments", "Appointment")
+                        .WithOne("AppointmentDate")
+                        .HasForeignKey("Appointment_UI.Models.Dates", "DateId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

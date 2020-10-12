@@ -1,7 +1,5 @@
-﻿using System;
+﻿using Appointment_UI.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Appointment.Models
 {
@@ -12,10 +10,11 @@ namespace Appointment.Models
         public Customer Customer { get; set; }
         //public int EmployeeId { get; set; }
         public Employee Employee { get; set; }
+        public Dates AppointmentDate { get; set; }
         public ICollection<Service> Services { get; set; }
         public int AppointmentsDurationInMinits { get; set; }
         public decimal TotalPrice { get; set; }
         public bool NotifyCustomer { get; set; }
-        public DateTime AppointmentsDate { get; set; }
+
     }
 }

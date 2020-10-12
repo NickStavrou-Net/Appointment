@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Appointment_UI.Migrations
 {
-    public partial class initial : Migration
+    public partial class InitialModel : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -45,8 +45,7 @@ namespace Appointment_UI.Migrations
                     EmployeeId = table.Column<int>(nullable: true),
                     AppointmentsDurationInMinits = table.Column<int>(nullable: false),
                     TotalPrice = table.Column<decimal>(nullable: false),
-                    NotifyCustomer = table.Column<bool>(nullable: false),
-                    AppointmentsDate = table.Column<DateTime>(nullable: false)
+                    NotifyCustomer = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -63,6 +62,26 @@ namespace Appointment_UI.Migrations
                         principalTable: "Employees",
                         principalColumn: "EmployeeId",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Dates",
+                columns: table => new
+                {
+                    DateId = table.Column<int>(nullable: false),
+                    TimeStart = table.Column<DateTime>(nullable: false),
+                    TimeFinish = table.Column<DateTime>(nullable: false),
+                    DateofAppointment = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Dates", x => x.DateId);
+                    table.ForeignKey(
+                        name: "FK_Dates_Appointments_DateId",
+                        column: x => x.DateId,
+                        principalTable: "Appointments",
+                        principalColumn: "AppointmentsId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -107,6 +126,9 @@ namespace Appointment_UI.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Dates");
+
             migrationBuilder.DropTable(
                 name: "Services");
 

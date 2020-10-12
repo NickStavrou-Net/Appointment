@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\" />
+    <Folder Include="Interfaces\"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Appointment\Appointment_UI.csproj" />
+  </ItemGroup>
+
+</Project>
