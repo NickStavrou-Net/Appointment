@@ -1,5 +1,3 @@
-using Appointement_Services.Interfaces;
-using Appointement_Services.Services;
 using Appointment_UI.AppContext;
 using Appointment_UI.Services;
 using Microsoft.AspNetCore.Builder;
@@ -24,6 +22,7 @@ namespace Appointment
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
                     b => b.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName)));
