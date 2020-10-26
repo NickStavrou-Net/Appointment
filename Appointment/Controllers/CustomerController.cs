@@ -18,9 +18,9 @@ namespace Appointment_UI.Controllers
             _service = service;
         }
 
-        public IActionResult Index()
+        public async ValueTask<ActionResult<IReadOnlyCollection<Customer>>> Index()
         {
-            var users = _service.GetAllCustomersAsync();
+            var users = await _service.GetAllCustomersAsync();
             return View(users);
         }
     }
