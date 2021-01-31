@@ -7,6 +7,10 @@
       "destination": "wwwroot/lib/select2/"
     },
     {
+      "library": "moment.js@2.29.1",
+      "destination": "wwwroot/lib/moment.js/"
+    },
+    {
       "library": "fullcalendar@3.10.2",
       "destination": "wwwroot/lib/fullcalendar/"
     }
