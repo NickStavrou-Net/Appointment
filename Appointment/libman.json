@@ -5,6 +5,10 @@
     {
       "library": "select2@4.0.13",
       "destination": "wwwroot/lib/select2/"
+    },
+    {
+      "library": "fullcalendar@3.10.2",
+      "destination": "wwwroot/lib/fullcalendar/"
     }
   ]
 }
