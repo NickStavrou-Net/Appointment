@@ -8,11 +8,12 @@ using System.Threading.Tasks;
 
 namespace Appointement_Services.Interfaces
 {
-    public interface ICustomerService
+    public interface IAppointmentService
     {
         ValueTask<Customer> CreateCustomerAsync(Customer customer);
         ValueTask<Customer> RetrieveCustomerByIdAsync(Expression<Func<Customer, bool>> expression);
         ValueTask<Customer> UpdateCustomerAsync(Customer customer);
         ValueTask<IReadOnlyList<Customer>> GetAllCustomersAsync();
+        Task<int> ConfirmAppointment(int id);
     }
 }

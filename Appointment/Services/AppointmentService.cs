@@ -11,14 +11,22 @@ using System.Threading.Tasks;
 
 namespace Appointement_Services.Services
 {
-    public class CustomerService1 : ICustomerService
+    public class AppointmentService : IAppointmentService
     {
         private readonly AppDbContext _appDbContext;
 
-        public CustomerService1(AppDbContext appDbContext)
+        public AppointmentService(AppDbContext appDbContext) => _appDbContext = appDbContext;
+
+        public async Task<int> ConfirmAppointment(int id)
         {
-            _appDbContext = appDbContext;
+            var appointment = _appDbContext.Appointments.FirstOrDefault(a => a.Id == id);
+            if (appointment is not null)
+            {
+                appointment.IsApproved = true;
+            }
+            return await _appDbContext.SaveChangesAsync();
         }
+
         public async ValueTask<Customer> CreateCustomerAsync(Customer customer)
         {
             _appDbContext.Add(customer);
