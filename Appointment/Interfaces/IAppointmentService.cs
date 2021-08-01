@@ -10,10 +10,10 @@ namespace Appointement_Services.Interfaces
 {
     public interface IAppointmentService
     {
-        ValueTask<Customer> CreateCustomerAsync(Customer customer);
-        ValueTask<Customer> RetrieveCustomerByIdAsync(Expression<Func<Customer, bool>> expression);
-        ValueTask<Customer> UpdateCustomerAsync(Customer customer);
-        ValueTask<IReadOnlyList<Customer>> GetAllCustomersAsync();
-        Task<int> ConfirmAppointment(int id);
+        ValueTask<Appointments> CreateAppointmentAsync(Appointments appointments);
+        ValueTask<Appointments> RetrieveAppointmentByIdAsync(Expression<Func<Appointments, bool>> expression);
+        ValueTask<Appointments> UpdateAppointmentAsync(Appointments appointments);
+        ValueTask<IReadOnlyList<Appointments>> GetAllCustomersAsync();
+        Task<int> MarkCompletedAppointment(int id);
     }
 }
