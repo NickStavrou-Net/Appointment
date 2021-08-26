@@ -13,7 +13,7 @@ namespace Appointement_Services.Interfaces
         ValueTask<Appointments> CreateAppointmentAsync(Appointments appointments);
         ValueTask<Appointments> RetrieveAppointmentByIdAsync(Expression<Func<Appointments, bool>> expression);
         ValueTask<Appointments> UpdateAppointmentAsync(Appointments appointments);
-        ValueTask<IReadOnlyList<Appointments>> GetAllCustomersAsync();
+        ValueTask<IReadOnlyList<Appointments>> GetAppointmentsAsync();
         Task<int> MarkCompletedAppointment(int id);
     }
 }

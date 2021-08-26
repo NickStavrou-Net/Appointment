@@ -32,6 +32,11 @@ namespace Appointement_Services.Services
             throw new NotImplementedException();
         }
 
+        public ValueTask<IReadOnlyList<Appointments>> GetAppointmentsAsync()
+        {
+            throw new NotImplementedException();
+        }
+
         //public async ValueTask<Customer> CreateCustomerAsync(Customer customer)
         //{
         //    _appDbContext.Add(customer);
@@ -72,9 +77,5 @@ namespace Appointement_Services.Services
         //    return customer;
         //}
 
-        ValueTask<IReadOnlyList<Appointments>> IAppointmentService.GetAllCustomersAsync()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
