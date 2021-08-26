@@ -17,15 +17,6 @@ namespace Appointement_Services.Services
 
         public AppointmentService(AppDbContext appDbContext) => _appDbContext = appDbContext;
 
-        //public async Task<int> ConfirmAppointment(int id)
-        //{
-        //    var appointment = _appDbContext.Appointments.FirstOrDefault(a => a.Id == id);
-        //    if (appointment is not null)
-        //    {
-        //        appointment.IsApproved = true;
-        //    }
-        //    return await _appDbContext.SaveChangesAsync();
-        //}
 
         public ValueTask<Appointments> CreateAppointmentAsync(Appointments appointments)
         {
@@ -36,6 +27,32 @@ namespace Appointement_Services.Services
         {
             throw new NotImplementedException();
         }
+
+        public ValueTask<Appointments> UpdateAppointmentAsync(Appointments appointments)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<int> MarkCompletedAppointment(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ValueTask<Appointments> RetrieveAppointmentByIdAsync(Expression<Func<Appointments, bool>> expression)
+        {
+            throw new NotImplementedException();
+        }
+
+        //public async Task<int> ConfirmAppointment(int id)
+        //{
+        //    var appointment = _appDbContext.Appointments.FirstOrDefault(a => a.Id == id);
+        //    if (appointment is not null)
+        //    {
+        //        appointment.IsApproved = true;
+        //    }
+        //    return await _appDbContext.SaveChangesAsync();
+        //}
+
 
         //public async ValueTask<Customer> CreateCustomerAsync(Customer customer)
         //{
@@ -50,25 +67,13 @@ namespace Appointement_Services.Services
         //    return await _appDbContext.Customers.ToListAsync();
         //}
 
-        public Task<int> MarkCompletedAppointment(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public ValueTask<Appointments> RetrieveAppointmentByIdAsync(Expression<Func<Appointments, bool>> expression)
-        {
-            throw new NotImplementedException();
-        }
 
         //public async ValueTask<Customer> RetrieveCustomerByIdAsync(Expression<Func<Customer, bool>> expression)
         //{
         //    return await _appDbContext.Customers.FirstOrDefaultAsync(expression);
         //}
 
-        public ValueTask<Appointments> UpdateAppointmentAsync(Appointments appointments)
-        {
-            throw new NotImplementedException();
-        }
+
 
         //public async ValueTask<Customer> UpdateCustomerAsync(Customer customer)
         //{
