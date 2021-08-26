@@ -26,3 +26,7 @@ function InitializeCalendar() {
 function onShowModal(object, isEventDetail) {
     $("#calendarInput").modal("show");
 }
+
+function onCloseModal(object, isEventDetail) {
+    $("#calendarInput").modal("hide");
+}
