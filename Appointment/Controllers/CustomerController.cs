@@ -20,6 +20,7 @@ namespace Appointment_UI.Controllers
 
         public async ValueTask<ActionResult<IReadOnlyCollection<Customer>>> Index()
         {
+            ///test
             var users = await _service.GetAllCustomersAsync();
             return View(users);
         }
