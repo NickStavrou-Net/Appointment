@@ -1,0 +1,26 @@
+﻿<div class="modal fade" role="dialog" id="calendarInput" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="calendarForm">
+                <div class="modal-header">
+                    <h4 class="modal-title">Add/Edit To Calendar</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="tittle">Title</label>
+                        <input type="text" maxlength="100" class="form-control" id="title" />
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea type="text" class="form-control" id="title"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" onclick="onCloseModal();">Close</button> &nbsp;
+                        <button type="button" class="btn btn-primary" onclick="onSubmit();">Submit</button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
