@@ -15,44 +15,39 @@ namespace Appointment_UI.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
+                .HasAnnotation("ProductVersion", "5.0.8")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Appointment.Models.Appointments", b =>
                 {
-                    b.Property<int>("AppointmentsId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AppointmentsDurationInMinits")
-                        .HasColumnType("int");
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CustomerId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("EmployeeId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("NotifyCustomer")
+                    b.Property<bool>("IsCompleted")
                         .HasColumnType("bit");
 
-                    b.Property<decimal>("TotalPrice")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("AppointmentsId");
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("CustomerId");
+                    b.HasKey("Id");
 
-                    b.HasIndex("EmployeeId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Appointments");
                 });
 
-            modelBuilder.Entity("Appointment.Models.Customer", b =>
+            modelBuilder.Entity("Appointment.Models.User", b =>
                 {
-                    b.Property<int>("CustomerId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -63,68 +58,15 @@ namespace Appointment_UI.Migrations
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("CustomerId");
+                    b.HasKey("Id");
 
-                    b.ToTable("Customers");
-                });
-
-            modelBuilder.Entity("Appointment.Models.Employee", b =>
-                {
-                    b.Property<int>("EmployeeId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("EmployeeId");
-
-                    b.ToTable("Employees");
-                });
-
-            modelBuilder.Entity("Appointment.Models.Service", b =>
-                {
-                    b.Property<int>("ServiceId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("AppointmentsId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("LongDescription")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("ServiceTimeInMinutes")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ShortDescription")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ServiceId");
-
-                    b.HasIndex("AppointmentsId");
-
-                    b.ToTable("Services");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Appointment_UI.Models.Dates", b =>
                 {
                     b.Property<int>("DateId")
                         .HasColumnType("int");
-
-                    b.Property<DateTime>("DateofAppointment")
-                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("TimeFinish")
                         .HasColumnType("datetime2");
@@ -139,20 +81,11 @@ namespace Appointment_UI.Migrations
 
             modelBuilder.Entity("Appointment.Models.Appointments", b =>
                 {
-                    b.HasOne("Appointment.Models.Customer", "Customer")
+                    b.HasOne("Appointment.Models.User", "User")
                         .WithMany("Appointments")
-                        .HasForeignKey("CustomerId");
+                        .HasForeignKey("UserId");
 
-                    b.HasOne("Appointment.Models.Employee", "Employee")
-                        .WithMany("Appointments")
-                        .HasForeignKey("EmployeeId");
-                });
-
-            modelBuilder.Entity("Appointment.Models.Service", b =>
-                {
-                    b.HasOne("Appointment.Models.Appointments", null)
-                        .WithMany("Services")
-                        .HasForeignKey("AppointmentsId");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Appointment_UI.Models.Dates", b =>
@@ -162,6 +95,18 @@ namespace Appointment_UI.Migrations
                         .HasForeignKey("Appointment_UI.Models.Dates", "DateId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Appointment");
+                });
+
+            modelBuilder.Entity("Appointment.Models.Appointments", b =>
+                {
+                    b.Navigation("AppointmentDate");
+                });
+
+            modelBuilder.Entity("Appointment.Models.User", b =>
+                {
+                    b.Navigation("Appointments");
                 });
 #pragma warning restore 612, 618
         }
