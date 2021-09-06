@@ -1,5 +1,4 @@
 using Appointment_UI.AppContext;
-using Appointment_UI.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -21,6 +20,8 @@ namespace Appointment
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHttpClient();
+
             services.AddControllersWithViews();
 
             services.AddDbContext<AppDbContext>(options =>
@@ -28,7 +29,7 @@ namespace Appointment
                     b => b.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName)));
             
             //adding services in DI(to remove when refactoring)
-            services.AddScoped<CustomerService>();
+            services.AddTransient<IAppointmentService,AppointmentService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
