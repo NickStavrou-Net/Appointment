@@ -30,7 +30,7 @@ namespace Appointment
                     b => b.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName)));
             
             //adding services in DI(to remove when refactoring)
-            services.AddTransient<IAppointmentService,AppointmentService>();
+            services.AddScoped<IAppointmentService,AppointmentService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
