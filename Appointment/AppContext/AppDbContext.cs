@@ -9,8 +9,5 @@ namespace Appointment_UI.AppContext
 
         public DbSet<Appointments> Appointments { get; set; }
 
-
-
-
     }
 }
